@@ -11,7 +11,8 @@
     "url": "https://github.com/ricklancee/maljs/issues"
   },
   "scripts": {
-    "build": "babel src -d dist"
+    "build": "./node_modules/.bin/browserify src/maljs.js -o dist/maljs.js -t babelify",
+    "build": "./node_modules/.bin/jasmine"
   },
   "homepage": "https://github.com/ricklancee/maljs#readme",
   "devDependencies": {
@@ -19,6 +20,7 @@
     "babel-preset-es2015": "^6.9.0",
     "babelify": "^7.3.0",
     "browserify": "^13.0.1",
+    "jasmine": "^2.4.1",
     "xml2js": "^0.4.17"
   }
 }
