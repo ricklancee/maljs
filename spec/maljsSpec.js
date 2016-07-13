@@ -11,6 +11,8 @@ describe('MALjs suite', () => {
   });
 
   it('should be able to search an anime', () => {
-    mal.search('full metal');
+    mal.search('full metal').then(result => {
+      console.log(result);
+    });
   });
 });
