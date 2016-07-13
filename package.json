@@ -10,5 +10,15 @@
   "bugs": {
     "url": "https://github.com/ricklancee/maljs/issues"
   },
-  "homepage": "https://github.com/ricklancee/maljs#readme"
+  "scripts": {
+    "build": "babel src -d dist"
+  },
+  "homepage": "https://github.com/ricklancee/maljs#readme",
+  "devDependencies": {
+    "babel-cli": "^6.10.1",
+    "babel-preset-es2015": "^6.9.0",
+    "babelify": "^7.3.0",
+    "browserify": "^13.0.1",
+    "xml2js": "^0.4.17"
+  }
 }
