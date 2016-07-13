@@ -10,5 +10,7 @@ describe('MALjs suite', () => {
     expect(mal.password).toBe(_ENV.password);
   });
 
-
+  it('should be able to search an anime', () => {
+    mal.search('full metal');
+  });
 });
