@@ -1,0 +1,14 @@
+{
+  "name": "maljs",
+  "version": "0.0.1",
+  "description": "A js json api wrapper for the myanimelist api",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ricklancee/maljs.git"
+  },
+  "author": "Rick Lancee",
+  "bugs": {
+    "url": "https://github.com/ricklancee/maljs/issues"
+  },
+  "homepage": "https://github.com/ricklancee/maljs#readme"
+}
