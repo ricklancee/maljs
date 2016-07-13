@@ -1,9 +1,18 @@
 "use strict";
 
-import xml2js from 'xml2js';
+// import xml2js from 'xml2js';
 
-class Maljs {
-  constructor() {
-    console.log('yoo hoo');
+class MALjs {
+  constructor(user, password) {
+    this.user = user;
+    this.password = password;
+
+  }
+
+  search(query) {
+
   }
 }
+
+window.MALjs = MALjs;
+
