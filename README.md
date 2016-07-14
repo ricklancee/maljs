@@ -1,6 +1,6 @@
 # MALjs
 
-A json promise api wrapper for the MAL (myanimelist) api.
+A json promise api wrapper for the MAL (myanimelist) api. http://myanimelist.net/modules.php?go=api
 
 ### Support
 All api requests return promises. Use a Promise polyfill if neccesarry.
@@ -53,6 +53,22 @@ api.verifyCredentials()
 
 ```
 
+Anime values *used as data in `add()` and `update()` calls*
+- episode. *int*
+- status. *int OR string. 1/watching, 2/completed, 3/onhold, 4/dropped, 6/plantowatch*
+- score. *int*
+- storage_type. *int*
+- storage_value. *float*
+- times_rewatched. *int*
+- rewatch_value. *int*
+- date_start. *date. mmddyyyy*
+- date_finish. *date. mmddyyyy*
+- priority. *int*
+- enable_discussion. *int. 1=enable, 0=disable*
+- enable_rewatching. *int. 1=enable, 0=disable*
+- comments. *string*
+- fansub_group. *string*
+- tags. *string. tags separated by commas*
 
 ### Build
 
