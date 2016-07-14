@@ -10,7 +10,7 @@ describe('MALjs suite', () => {
     expect(mal.password).toBe(_ENV.password);
   });
 
-  describe('/search', () => {
+  describe('search()', () => {
     var failed;
     var response;
 
@@ -44,4 +44,55 @@ describe('MALjs suite', () => {
     });
 
   });
+
+  describe('verifyCredentials()', () => {
+    var failed;
+    var response;
+
+    beforeEach((done) => {
+      mal = new MALjs(_ENV.user, _ENV.password);
+      mal.verifyCredentials()
+        .then(result => {
+          failed = false;
+          response = result;
+          console.log('success:', result);
+          done();
+        })
+        .catch(err => {
+          failed = true;
+          console.log('error:', err);
+          done();
+        });
+    });
+
+    it('should be able to retrieve user details', () => {
+      expect(failed).toBe(false);
+    });
+  });
+
+  describe('list()', () => {
+    var failed;
+    var response;
+
+    beforeEach((done) => {
+      mal = new MALjs(_ENV.user, _ENV.password);
+      mal.list()
+        .then(result => {
+          failed = false;
+          response = result;
+          console.log('success:', result);
+          done();
+        })
+        .catch(err => {
+          failed = true;
+          console.log('error:', err);
+          done();
+        });
+    });
+
+    it('should be able to retrieve user anime list', () => {
+      expect(failed).toBe(false);
+    });
+  });
+
 });

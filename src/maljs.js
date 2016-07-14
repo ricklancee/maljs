@@ -11,22 +11,45 @@ class MALjs {
 
   search(query) {
     return new Promise((resolve, reject) => {
-
-      this._request('/anime/search.xml?q='+query)
-        .then(xmlData => {
-          parseString(xmlData, function (err, result) {
-            if (result) resolve(result);
-            if (err) reject(err);
-          });
-        })
+      this._request('http://myanimelist.net/api/anime/search.xml?q='+query)
+        .then(this._parseXml)
+        .then(resolve)
         .catch(reject);
+    });
+  }
+
+  verifyCredentials() {
+    return new Promise((resolve, reject) => {
+
+      this._request('http://myanimelist.net/api/account/verify_credentials.xml')
+        .then(this._parseXml)
+        .then(resolve)
+        .catch(reject);
+    });
+  }
+
+  list() {
+    return new Promise((resolve, reject) => {
+      this._request('http://myanimelist.net/malappinfo.php?u='+this.user+'&status=all&type=anime')
+        .then(this._parseXml)
+        .then(resolve)
+        .catch(reject);
+    });
+  }
+
+  _parseXml(xmlString) {
+    return new Promise((resolve, reject) => {
+      parseString(xmlString, { explicitArray: false }, (err, result) => {
+        if (result) resolve(result);
+        if (err) reject(err);
+      });
     });
   }
 
   _request(url) {
     return new Promise((resolve, reject) => {
       var req = new XMLHttpRequest();
-      req.open('GET', this.baseUrl+url, true, this.user, this.password);
+      req.open('GET', url, true, this.user, this.password);
 
       req.onload = function() {
         if (req.status === 200) {
