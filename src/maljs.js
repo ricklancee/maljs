@@ -6,6 +6,10 @@ class MALjs {
   constructor(user, password) {
     this.user = user;
     this.password = password;
+
+    if (!this.user || !this.password) {
+      throw new Error('MALjs requires a myanimelist.net username and password.');
+    }
   }
 
   search(query) {

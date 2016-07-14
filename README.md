@@ -1,6 +1,6 @@
-# MALjs
+# MALjs`
 
-A json api wrapper for the MAL (myanimelist) api.
+A json promise api wrapper for the MAL (myanimelist) api.
 
 ### Support
 All api requests return promises. Use a Promise polyfill if neccesarry.

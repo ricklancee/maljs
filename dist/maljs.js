@@ -12495,6 +12495,10 @@ var MALjs = function () {
 
     this.user = user;
     this.password = password;
+
+    if (!this.user || !this.password) {
+      throw new Error('MALjs requires a myanimelist.net username and password.');
+    }
   }
 
   _createClass(MALjs, [{
