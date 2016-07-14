@@ -10,11 +10,18 @@ A json api wrapper for the MAL (myanimelist) api
 // password
 var api = new MALjs('MAL username', 'MAL password');
 
-// make an api request to /search
 // api requests return promises.
+
+// search my animelist
 api.search('search string')
-  .then(result => console.log(result)) // contains the json result on success
-  .catch(err => console.log(err)); // contains an error message if the request fails
+  .then(result => result) // contains the json result on success
+  .catch(err => err); // contains an error message if the request fails
+
+// Get the authenticated users animelist
+api.list()
+  .then(result => result)
+  .catch(err => err) 
+
 ```
 
 
