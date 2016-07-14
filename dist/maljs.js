@@ -12529,21 +12529,30 @@ var MALjs = function () {
       });
     }
   }, {
-    key: 'delete',
-    value: function _delete(id) {
+    key: 'update',
+    value: function update(id, data) {
       var _this4 = this;
 
       return new Promise(function (resolve, reject) {
-        _this4._post('http://myanimelist.net/api/animelist/delete/' + id + '.xml').then(resolve).catch(reject);
+        _this4._post('http://myanimelist.net/api/animelist/update/' + id + '.xml', data).then(resolve).catch(reject);
+      });
+    }
+  }, {
+    key: 'delete',
+    value: function _delete(id) {
+      var _this5 = this;
+
+      return new Promise(function (resolve, reject) {
+        _this5._post('http://myanimelist.net/api/animelist/delete/' + id + '.xml').then(resolve).catch(reject);
       });
     }
   }, {
     key: 'verifyCredentials',
     value: function verifyCredentials() {
-      var _this5 = this;
+      var _this6 = this;
 
       return new Promise(function (resolve, reject) {
-        _this5._get('http://myanimelist.net/api/account/verify_credentials.xml').then(_this5._parseXml).then(resolve).catch(reject);
+        _this6._get('http://myanimelist.net/api/account/verify_credentials.xml').then(_this6._parseXml).then(resolve).catch(reject);
       });
     }
   }, {
@@ -12559,11 +12568,11 @@ var MALjs = function () {
   }, {
     key: '_get',
     value: function _get(url) {
-      var _this6 = this;
+      var _this7 = this;
 
       return new Promise(function (resolve, reject) {
         var req = new XMLHttpRequest();
-        req.open('GET', url, true, _this6.user, _this6.password);
+        req.open('GET', url, true, _this7.user, _this7.password);
 
         req.onload = function () {
           if (req.status === 200) {
@@ -12583,7 +12592,7 @@ var MALjs = function () {
   }, {
     key: '_post',
     value: function _post(url) {
-      var _this7 = this;
+      var _this8 = this;
 
       var data = arguments.length <= 1 || arguments[1] === undefined ? null : arguments[1];
 
@@ -12595,7 +12604,7 @@ var MALjs = function () {
         }
 
         var req = new XMLHttpRequest();
-        req.open('POST', url, true, _this7.user, _this7.password);
+        req.open('POST', url, true, _this8.user, _this8.password);
         req.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
         req.onload = function () {

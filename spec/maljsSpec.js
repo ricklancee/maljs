@@ -105,7 +105,7 @@ describe('MALjs suite', () => {
       mal.add('71', {
         "entry": {
           "episode": "1",
-          "status": "1",
+          "status": "6",
           "score": "7"
         }
       })
@@ -129,6 +129,47 @@ describe('MALjs suite', () => {
       expect(failed).toBe(false);
       expect(response.myanimelist).toBeDefined();
       expect(response.myanimelist.anime.series_animedb_id).toBe('71');
+      expect(response.myanimelist.anime.my_status).toBe('6');
+      expect(response.myanimelist.anime.my_watched_episodes).toBe('1');
+    });
+  });
+
+  describe('update()', () => {
+    var failed;
+    var response;
+
+    beforeEach((done) => {
+      mal = new MALjs(_ENV.user, _ENV.password);
+
+      mal.update('71', {
+        "entry": {
+          "episode": "2",
+          "status": "1",
+          "score": "7"
+        }
+      })
+      .then(results => {
+        return mal.list();
+      })
+      .then(results => {
+        console.log(results);
+        failed = false;
+        response = results;
+        done();
+      })
+      .catch(err => {
+        failed = true;
+        console.log('error:', err);
+        done();
+      });
+    });
+
+    it('should be able to update an anime to the list', () => {
+      expect(failed).toBe(false);
+      expect(response.myanimelist).toBeDefined();
+      expect(response.myanimelist.anime.series_animedb_id).toBe('71');
+      expect(response.myanimelist.anime.my_status).toBe('1');
+      expect(response.myanimelist.anime.my_watched_episodes).toBe('2');
     });
   });
 

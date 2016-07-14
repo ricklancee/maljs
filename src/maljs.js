@@ -38,6 +38,14 @@ class MALjs {
     });
   }
 
+  update(id, data) {
+    return new Promise((resolve, reject) => {
+      this._post('http://myanimelist.net/api/animelist/update/'+id+'.xml', data)
+        .then(resolve)
+        .catch(reject);
+    });
+  }
+
   delete(id) {
     return new Promise((resolve, reject) => {
       this._post('http://myanimelist.net/api/animelist/delete/'+id+'.xml')
