@@ -27,8 +27,9 @@ class MALjs {
   _request(url) {
     return new Promise((resolve, reject) => {
       var req = new XMLHttpRequest();
-      req.open('GET', this.baseUrl+url, true);
-      req.setRequestHeader("Authorization", "Basic " + authHeader);
+      req.open('GET', this.baseUrl+url);
+      req.withCredentials = true;
+      req.setRequestHeader("Authorization", "Basic " + this.authHeader);
 
       req.onload = function() {
         if (req.status === 200) {

@@ -12521,8 +12521,9 @@ var MALjs = function () {
 
       return new Promise(function (resolve, reject) {
         var req = new XMLHttpRequest();
-        req.open('GET', _this2.baseUrl + url, true);
-        req.setRequestHeader("Authorization", "Basic " + authHeader);
+        req.open('GET', _this2.baseUrl + url);
+        req.withCredentials = true;
+        req.setRequestHeader("Authorization", "Basic " + _this2.authHeader);
 
         req.onload = function () {
           if (req.status === 200) {
