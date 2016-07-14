@@ -1,4 +1,4 @@
-# MALjs`
+# MALjs
 
 A json promise api wrapper for the MAL (myanimelist) api.
 
@@ -18,6 +18,11 @@ api.search('search string')
 
 // Get the authenticated users animelist
 api.list()
+  .then(result => result)
+  .catch(err => err) 
+
+// Verify the users credentials
+api.verifyCredentials()
   .then(result => result)
   .catch(err => err) 
 

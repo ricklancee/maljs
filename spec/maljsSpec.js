@@ -95,4 +95,71 @@ describe('MALjs suite', () => {
     });
   });
 
+  describe('add()', () => {
+    var failed;
+    var response;
+
+    beforeEach((done) => {
+      mal = new MALjs(_ENV.user, _ENV.password);
+
+      mal.add('71', {
+        "entry": {
+          "episode": "1",
+          "status": "1",
+          "score": "7"
+        }
+      })
+      .then(results => {
+        return mal.list();
+      })
+      .then(results => {
+        console.log(results);
+        failed = false;
+        response = results;
+        done();
+      })
+      .catch(err => {
+        failed = true;
+        console.log('error:', err);
+        done();
+      });
+    });
+
+    it('should be able to add an anime to the list', () => {
+      expect(failed).toBe(false);
+      expect(response.myanimelist).toBeDefined();
+      expect(response.myanimelist.anime.series_animedb_id).toBe('71');
+    });
+  });
+
+  describe('delete()', () => {
+    var failed;
+    var response;
+
+    beforeEach((done) => {
+      mal = new MALjs(_ENV.user, _ENV.password);
+
+      mal.delete('71')
+      .then(results => {
+        return mal.list();
+      })
+      .then(results => {
+        console.log(results);
+        failed = false;
+        response = results;
+        done();
+      })
+      .catch(err => {
+        failed = true;
+        console.log('error:', err);
+        done();
+      });
+    });
+
+    it('should be able to delete an anime from the list', () => {
+      expect(failed).toBe(false);
+      expect(response.myanimelist.anime).not.toBeDefined();
+    });
+  });
+
 });
