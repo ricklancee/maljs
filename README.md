@@ -3,6 +3,21 @@
 A json api wrapper for the MAL (myanimelist) api
 
 
+### usage
+
+```js
+// create an new api instance with your myanimelist user name and 
+// password
+var api = new MALjs('MAL username', 'MAL password');
+
+// make an api request to /search
+// api requests return promises.
+api.search('search string')
+  .then(result => console.log(result)) // contains the json result on success
+  .catch(err => console.log(err)); // contains an error message if the request fails
+```
+
+
 ### Build
 
 Install dependencies with `npm install`.
