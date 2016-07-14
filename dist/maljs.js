@@ -12506,7 +12506,7 @@ var MALjs = function () {
 
       return new Promise(function (resolve, reject) {
 
-        _this._request('/anime|manga/search.xml?q=' + query).then(function (xmlData) {
+        _this._request('/anime/search.xml?q=' + query).then(function (xmlData) {
           (0, _xml2js.parseString)(xmlData, function (err, result) {
             if (result) resolve(result);
             if (err) reject(err);
@@ -12521,9 +12521,8 @@ var MALjs = function () {
 
       return new Promise(function (resolve, reject) {
         var req = new XMLHttpRequest();
-        req.open('GET', _this2.baseUrl + url);
-        req.withCredentials = true;
-        req.setRequestHeader("Authorization", "Basic " + _this2.authHeader);
+        req.open('GET', _this2.baseUrl + url, true, _this2.user, _this2.password);
+        // req.withCredentials = true;
 
         req.onload = function () {
           if (req.status === 200) {

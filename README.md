@@ -8,7 +8,7 @@ A json api wrapper for the MAL (myanimelist) api
 Install dependencies with `npm install`.
 
 Run `npm run build` to build source files.
-Run `npm run build` to build source files.
+Run `npm run watch` to watch file changes and build source files.
 
 ### Testing
 

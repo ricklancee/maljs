@@ -13,7 +13,7 @@ class MALjs {
   search(query) {
     return new Promise((resolve, reject) => {
 
-      this._request('/anime|manga/search.xml?q='+query)
+      this._request('/anime/search.xml?q='+query)
         .then(xmlData => {
           parseString(xmlData, function (err, result) {
             if (result) resolve(result);
@@ -27,9 +27,8 @@ class MALjs {
   _request(url) {
     return new Promise((resolve, reject) => {
       var req = new XMLHttpRequest();
-      req.open('GET', this.baseUrl+url);
-      req.withCredentials = true;
-      req.setRequestHeader("Authorization", "Basic " + this.authHeader);
+      req.open('GET', this.baseUrl+url, true, this.user, this.password);
+      // req.withCredentials = true;
 
       req.onload = function() {
         if (req.status === 200) {
