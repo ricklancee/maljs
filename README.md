@@ -29,8 +29,8 @@ api.add('71', { // '71' is the animes ID (retrieved from search())
     "score": "7"
   }
 })
-.then(result => result)
-.catch(err => err);
+  .then(result => result)
+  .catch(err => err);
 
 // Updates an anime on the list
 api.update('71', {
@@ -38,13 +38,13 @@ api.update('71', {
     "status": "1"
   }
 })
-.then(result => result)
-.catch(err => err);
+  .then(result => result)
+  .catch(err => err);
 
 // Deletes an anime from the list
 api.delete('71')
-.then(result => result)
-.catch(err => err);
+  .then(result => result)
+  .catch(err => err);
 
 // Verify the users credentials
 api.verifyCredentials()
