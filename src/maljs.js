@@ -7,7 +7,6 @@ class MALjs {
     this.user = user;
     this.password = password;
     this.baseUrl = 'http://myanimelist.net/api';
-    this.authHeader = btoa(this.username + ":" + this.password);
   }
 
   search(query) {
@@ -28,7 +27,6 @@ class MALjs {
     return new Promise((resolve, reject) => {
       var req = new XMLHttpRequest();
       req.open('GET', this.baseUrl+url, true, this.user, this.password);
-      // req.withCredentials = true;
 
       req.onload = function() {
         if (req.status === 200) {
