@@ -32,6 +32,11 @@ class MALjs {
 
   add(id, data) {
     return new Promise((resolve, reject) => {
+
+      if (!data.entry) {
+        data = {entry: data};
+      }
+
       this._post('http://myanimelist.net/api/animelist/add/'+id+'.xml', data)
         .then(resolve)
         .catch(reject);
@@ -40,6 +45,11 @@ class MALjs {
 
   update(id, data) {
     return new Promise((resolve, reject) => {
+
+      if (!data.entry) {
+        data = {entry: data};
+      }
+
       this._post('http://myanimelist.net/api/animelist/update/'+id+'.xml', data)
         .then(resolve)
         .catch(reject);

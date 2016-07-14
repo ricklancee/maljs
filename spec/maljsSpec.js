@@ -103,11 +103,9 @@ describe('MALjs suite', () => {
       mal = new MALjs(_ENV.user, _ENV.password);
 
       mal.add('71', {
-        "entry": {
-          "episode": "1",
-          "status": "6",
-          "score": "7"
-        }
+        "episode": "1",
+        "status": "6",
+        "score": "7"
       })
       .then(results => {
         return mal.list();
@@ -142,11 +140,9 @@ describe('MALjs suite', () => {
       mal = new MALjs(_ENV.user, _ENV.password);
 
       mal.update('71', {
-        "entry": {
-          "episode": "2",
-          "status": "1",
-          "score": "7"
-        }
+        "episode": "2",
+        "status": "1",
+        "score": "7"
       })
       .then(results => {
         return mal.list();

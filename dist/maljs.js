@@ -12525,6 +12525,11 @@ var MALjs = function () {
       var _this3 = this;
 
       return new Promise(function (resolve, reject) {
+
+        if (!data.entry) {
+          data = { entry: data };
+        }
+
         _this3._post('http://myanimelist.net/api/animelist/add/' + id + '.xml', data).then(resolve).catch(reject);
       });
     }
@@ -12534,6 +12539,11 @@ var MALjs = function () {
       var _this4 = this;
 
       return new Promise(function (resolve, reject) {
+
+        if (!data.entry) {
+          data = { entry: data };
+        }
+
         _this4._post('http://myanimelist.net/api/animelist/update/' + id + '.xml', data).then(resolve).catch(reject);
       });
     }

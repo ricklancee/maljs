@@ -23,20 +23,16 @@ api.list()
 
 // adds an anime to the list
 api.add('71', { // '71' is the animes ID (retrieved from search())
-  "entry": {
-    "episode": "1",
-    "status": "6", // 1/watching, 2/completed, 3/onhold, 4/dropped, 6/plantowatch
-    "score": "7"
-  }
+  "episode": "1",
+  "status": "6", // 1/watching, 2/completed, 3/onhold, 4/dropped, 6/plantowatch
+  "score": "7"
 })
   .then(result => result)
   .catch(err => err);
 
 // Updates an anime on the list
 api.update('71', {
-  "entry": {
-    "status": "1"
-  }
+  "status": "1"
 })
   .then(result => result)
   .catch(err => err);
