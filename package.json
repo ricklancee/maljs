@@ -11,6 +11,7 @@
     "url": "https://github.com/ricklancee/maljs/issues"
   },
   "scripts": {
+    "uglify": "./node_modules/.bin/uglifyjs --compress --mangle -o dist/maljs.min.js -- dist/maljs.js",
     "build": "./node_modules/.bin/browserify src/maljs.js -o dist/maljs.js -t babelify",
     "watch": "nodemon --watch src -x \"npm run build\""
   },
@@ -21,6 +22,7 @@
     "babelify": "^7.3.0",
     "browserify": "^13.0.1",
     "nodemon": "^1.9.2",
+    "uglify-js": "^2.7.0",
     "xml2js": "^0.4.17"
   }
 }
