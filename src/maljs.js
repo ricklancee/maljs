@@ -11,7 +11,7 @@ class MALjs {
 
   search(query) {
     return new Promise((resolve, reject) => {
-      this._request('http://myanimelist.net/api/anime/search.xml?q='+query)
+      this._get('http://myanimelist.net/api/anime/search.xml?q='+query)
         .then(this._parseXml)
         .then(resolve)
         .catch(reject);
@@ -21,7 +21,7 @@ class MALjs {
   verifyCredentials() {
     return new Promise((resolve, reject) => {
 
-      this._request('http://myanimelist.net/api/account/verify_credentials.xml')
+      this._get('http://myanimelist.net/api/account/verify_credentials.xml')
         .then(this._parseXml)
         .then(resolve)
         .catch(reject);
@@ -30,7 +30,7 @@ class MALjs {
 
   list() {
     return new Promise((resolve, reject) => {
-      this._request('http://myanimelist.net/malappinfo.php?u='+this.user+'&status=all&type=anime')
+      this._get('http://myanimelist.net/malappinfo.php?u='+this.user+'&status=all&type=anime')
         .then(this._parseXml)
         .then(resolve)
         .catch(reject);
@@ -46,7 +46,7 @@ class MALjs {
     });
   }
 
-  _request(url) {
+  _get(url) {
     return new Promise((resolve, reject) => {
       var req = new XMLHttpRequest();
       req.open('GET', url, true, this.user, this.password);
