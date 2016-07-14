@@ -6,7 +6,6 @@ class MALjs {
   constructor(user, password) {
     this.user = user;
     this.password = password;
-    this.baseUrl = 'http://myanimelist.net/api';
   }
 
   search(query) {

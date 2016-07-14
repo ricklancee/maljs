@@ -12495,7 +12495,6 @@ var MALjs = function () {
 
     this.user = user;
     this.password = password;
-    this.baseUrl = 'http://myanimelist.net/api';
   }
 
   _createClass(MALjs, [{
