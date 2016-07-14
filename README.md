@@ -1,16 +1,15 @@
 # MALjs
 
-A json api wrapper for the MAL (myanimelist) api
+A json api wrapper for the MAL (myanimelist) api.
 
+### Support
+All api requests return promises. Use a Promise polyfill if neccesarry.
 
-### usage
+### Usage
 
 ```js
-// create an new api instance with your myanimelist user name and 
-// password
+// create an new api instance with your myanimelist user name and password
 var api = new MALjs('MAL username', 'MAL password');
-
-// api requests return promises.
 
 // search my animelist
 api.search('search string')
