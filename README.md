@@ -66,6 +66,46 @@ Anime values *used as data in `add()` and `update()` calls*
 - fansub_group. *string*
 - tags. *string. tags separated by commas*
 
+### Fun with promises
+Since the api uses promises you can use things like chaining and parralell requests.
+
+*Chaining requests*
+
+```js
+var api = new MALjs('MAL username', 'MAL password');
+
+// Make the first request
+api.search('Full Metal')
+  .then(result => {
+    // result.anime.entry contains an array of matching animes
+    var animeId =  result.anime.entry[0].id;
+
+    // Make a new request.
+    return api.add(animeId);
+  })
+  .then(result => {
+    console.log('Anime added!', result);
+  })
+  .catch(err => {
+    console.log('Something went wrong', err);
+  });
+```
+
+*Parallel request*
+
+```js
+var api = new MALjs('MAL username', 'MAL password');
+
+// Add multiple animes to myanimelist.
+Promise.all([api.add('71'), api.add('231'), api.add('71')])
+.then(results => {
+  console.log('All anime are added!', results);
+}) // When all promises resolve
+.catch(err => {
+  console.log('Something went wrong', err);
+}) // when one fails all fail
+```
+
 ### Build
 
 Install dependencies with `npm install`.
