@@ -14,7 +14,7 @@ class MALjs {
 
   search(query) {
     return new Promise((resolve, reject) => {
-      this._get('http://myanimelist.net/api/anime/search.xml?q='+query)
+      this._get(`http://myanimelist.net/api/anime/search.xml?q=${query}`)
         .then(this._parseXml)
         .then(resolve)
         .catch(reject);
@@ -23,7 +23,7 @@ class MALjs {
 
   list() {
     return new Promise((resolve, reject) => {
-      this._get('http://myanimelist.net/malappinfo.php?u='+this.user+'&status=all&type=anime')
+      this._get(`http://myanimelist.net/malappinfo.php?u=${this.user}&status=all&type=anime`)
         .then(this._parseXml)
         .then(resolve)
         .catch(reject);
@@ -37,7 +37,7 @@ class MALjs {
         data = {entry: data};
       }
 
-      this._post('http://myanimelist.net/api/animelist/add/'+id+'.xml', data)
+      this._post(`http://myanimelist.net/api/animelist/add/${id}.xml`, data)
         .then(resolve)
         .catch(reject);
     });
@@ -50,7 +50,7 @@ class MALjs {
         data = {entry: data};
       }
 
-      this._post('http://myanimelist.net/api/animelist/update/'+id+'.xml', data)
+      this._post(`http://myanimelist.net/api/animelist/update/${id}.xml`, data)
         .then(resolve)
         .catch(reject);
     });
@@ -58,7 +58,7 @@ class MALjs {
 
   delete(id) {
     return new Promise((resolve, reject) => {
-      this._post('http://myanimelist.net/api/animelist/delete/'+id+'.xml')
+      this._post(`http://myanimelist.net/api/animelist/delete/${id}.xml`)
         .then(resolve)
         .catch(reject);
     });
