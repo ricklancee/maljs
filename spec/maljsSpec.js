@@ -10,6 +10,12 @@ describe('MALjs suite', () => {
     expect(mal.password).toBe(_ENV.password);
   });
 
+  it('should throw an exception when passing in no credentials', function() {
+    expect(function() {
+      new MALjs(_ENV.user);
+    }).toThrow();
+  });
+
   describe('search()', () => {
     var failed;
     var response;
