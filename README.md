@@ -23,16 +23,16 @@ api.list()
 
 // adds an anime to the list
 api.add('71', { // '71' is the animes ID (retrieved from search())
-  "episode": "1",
-  "status": "6", // 1/watching, 2/completed, 3/onhold, 4/dropped, 6/plantowatch
-  "score": "7"
+  episode: "1",
+  status: "6", // 1/watching, 2/completed, 3/onhold, 4/dropped, 6/plantowatch
+  score: "7"
 })
   .then(result => result)
   .catch(err => err);
 
 // Updates an anime on the list
 api.update('71', {
-  "status": "1"
+  status: "1"
 })
   .then(result => result)
   .catch(err => err);
@@ -67,7 +67,7 @@ Anime values *used as data in `add()` and `update()` calls*
 - tags. *string. tags separated by commas*
 
 ### Fun with promises
-Since the api uses promises you can use things like chaining and parralell requests.
+Since the api uses promises you can use things like chaining and parallel requests.
 
 *Chaining requests*
 
@@ -77,17 +77,17 @@ var api = new MALjs('MAL username', 'MAL password');
 // Make the first request
 api.search('Full Metal')
   .then(result => {
-    // result.anime.entry contains an array of matching animes
+    // result.anime.entry contains an array of animes matching the search query
     var animeId =  result.anime.entry[0].id;
 
-    // Make a new request.
+    // Make a new request, adding the anime to the users list
     return api.add(animeId);
   })
   .then(result => {
     console.log('Anime added!', result);
   })
   .catch(err => {
-    console.log('Something went wrong', err);
+    console.log('Something went wrong!', err);
   });
 ```
 
@@ -96,21 +96,27 @@ api.search('Full Metal')
 ```js
 var api = new MALjs('MAL username', 'MAL password');
 
-// Add multiple animes to myanimelist.
-Promise.all([api.add('71'), api.add('231'), api.add('71')])
-.then(results => {
-  console.log('All anime are added!', results);
-}) // When all promises resolve
-.catch(err => {
-  console.log('Something went wrong', err);
-}) // when one fails all fail
+// Add multiple anime to the users myanimelist.
+Promise.all([
+  api.add('71'),
+  api.add('231'),
+  api.add('71')
+])
+  // When all promises resolve.
+  .then(results => {
+    console.log('All anime were added!', results);
+  })
+   // When one promise fails, all fail.
+  .catch(err => {
+    console.log('Something went wrong!', err);
+  });
 ```
 
 ### Build
 
 Install dependencies with `npm install`.
 
-Run `npm run build` to build source files.
+Run `npm run build` to build source files.  
 Run `npm run watch` to watch file changes and build source files.
 
 ### Testing
