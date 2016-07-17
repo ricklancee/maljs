@@ -12576,6 +12576,29 @@ var MALjs = function () {
       });
     }
   }, {
+    key: '_toXml',
+    value: function _toXml(object) {
+      var xmlString = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>';
+
+      function getProps(obj) {
+        for (var property in obj) {
+          if (obj.hasOwnProperty(property)) {
+            if (obj[property].constructor == Object) {
+              xmlString += '<' + property + '>';
+              getProps(obj[property]);
+              xmlString += '</' + property + '>';
+            } else {
+              xmlString += '<' + property + '>' + obj[property] + '</' + property + '>';
+            }
+          }
+        }
+      }
+
+      getProps(object);
+
+      return xmlString;
+    }
+  }, {
     key: '_get',
     value: function _get(url) {
       var _this7 = this;
@@ -12608,11 +12631,6 @@ var MALjs = function () {
 
       return new Promise(function (resolve, reject) {
 
-        if (data) {
-          var builder = new _xml2js.Builder();
-          var xml = builder.buildObject(data);
-        }
-
         var req = new XMLHttpRequest();
         req.open('POST', url, true, _this8.user, _this8.password);
         req.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -12629,7 +12647,8 @@ var MALjs = function () {
           reject('request failed');
         };
 
-        if (xml) {
+        if (data) {
+          var xml = _this8._toXml(data);
           req.send('data=' + xml);
         } else {
           req.send();

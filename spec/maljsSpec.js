@@ -16,6 +16,15 @@ describe('MALjs suite', () => {
     }).toThrow();
   });
 
+  it('should be able to convert an object to an xml string', function() {
+    var xmlString = mal._toXml({
+      "episode": "1",
+      "status": "6",
+      "score": "7"
+    });
+    expect(xmlString).toBe('<?xml version="1.0" encoding="UTF-8" standalone="yes"?><episode>1</episode><status>6</status><score>7</score>');
+  });
+
   describe('search()', () => {
     var failed;
     var response;

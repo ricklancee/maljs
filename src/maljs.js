@@ -1,6 +1,6 @@
 "use strict";
 
-import { parseString, Builder } from 'xml2js';
+import { parseString } from 'xml2js';
 
 class MALjs {
   constructor(user, password) {
@@ -82,6 +82,28 @@ class MALjs {
     });
   }
 
+  _toXml(object) {
+    var xmlString = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>`;
+
+    function getProps(obj) {
+      for (var property in obj) {
+        if (obj.hasOwnProperty(property)){
+          if (obj[property].constructor == Object) {
+            xmlString += `<${property}>`;
+            getProps(obj[property]);
+            xmlString += `</${property}>`;
+          } else {
+            xmlString += `<${property}>${obj[property]}</${property}>`;
+          }
+        }
+      }
+    }
+
+    getProps(object);
+
+    return xmlString;
+  }
+
   _get(url) {
     return new Promise((resolve, reject) => {
       var req = new XMLHttpRequest();
@@ -106,11 +128,6 @@ class MALjs {
   _post(url, data=null) {
     return new Promise((resolve, reject) => {
 
-      if (data) {
-        var builder = new Builder();
-        var xml = builder.buildObject(data);
-      }
-
       var req = new XMLHttpRequest();
       req.open('POST', url, true, this.user, this.password);
       req.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -127,7 +144,8 @@ class MALjs {
         reject('request failed');
       };
 
-      if (xml) {
+      if (data) {
+        var xml = this._toXml(data);
         req.send('data='+xml);
       } else {
         req.send();
