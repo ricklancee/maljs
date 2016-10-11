@@ -121,6 +121,8 @@ Run `npm run watch` to watch file changes and build source files.
 
 ### Testing
 
+**NOTE: Tests are run against the live MAL Api, Don't use your actual MAL account if you don't want to alter your list**
+
 In order to test add the file `env.js` to the project root. Add your MAL credentials to be able to send requests to the MAL api.
 
 ```js
@@ -131,4 +133,4 @@ window._ENV = {
 };
 ```
 
-Open the `test.html` file to run the Jasmine test suite.
+Open the `test.html` file to run the Jasmine test suite. 
