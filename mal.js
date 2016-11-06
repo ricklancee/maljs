@@ -1,7 +1,5 @@
 "use strict";
 
-import { parseString } from 'xml2js';
-
 class MALjs {
   constructor(user, password) {
     this.user = user;

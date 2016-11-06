@@ -2,17 +2,16 @@
 <html>
 <head>
   <title></title>
-  <link rel="shortcut icon" type="image/png" href="jasmine/lib/jasmine-2.4.1/jasmine_favicon.png">
-  <link rel="stylesheet" type="text/css" href="jasmine/lib/jasmine-2.4.1/jasmine.css">
 </head>
 <body>
-
-  <script type="text/javascript" src="jasmine/lib/jasmine-2.4.1/jasmine.js"></script>
-  <script type="text/javascript" src="jasmine/lib/jasmine-2.4.1/jasmine-html.js"></script>
-  <script type="text/javascript" src="jasmine/lib/jasmine-2.4.1/boot.js"></script>
-
+  <p style="font-family: monospace;">Open console to see results of tests.</p>
   <script src="env.js"></script>
-  <script src="dist/maljs.js"></script>
-  <script src="spec/maljsSpec.js"></script>
+  <script src="polyfills/polyfills.js"></script>
+  <script src="maljs-es5.js"></script>
+  <script>
+    window.addEventListener('polyfillsLoaded', function() {
+      var api = new MALjs(window._ENV.user, window._ENV.password);
+    });
+  </script>
 </body>
 </html>
