@@ -45,11 +45,6 @@
     polyfillsNeeded.push(basePath + 'polyfills/fetch/fetch.js');
   }
 
-  if (!('registerElement' in document)) {
-    polyfillsNeeded.push(basePath + 'polyfills/webcomponentsjs/CustomElements.min.js');
-    waitForWebcomponents = true;
-  }
-
   // Shim for a Safari bug work around, safari sees HTMLElement
   // as an object not a function.
   if (typeof HTMLElement !== 'function') {

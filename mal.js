@@ -2,10 +2,10 @@
 
 class MALjs {
   constructor(user, password) {
-    this.user = user;
-    this.password = password;
+    this._user = user;
+    this._password = password;
 
-    if (!this.user || !this.password) {
+    if (!this._user || !this._password) {
       throw new Error('MALjs requires a myanimelist.net username and password.');
     }
   }
@@ -21,7 +21,7 @@ class MALjs {
 
   list() {
     return new Promise((resolve, reject) => {
-      this._get(`http://myanimelist.net/malappinfo.php?u=${this.user}&status=all&type=anime`)
+      this._get(`http://myanimelist.net/malappinfo.php?u=${this._user}&status=all&type=anime`)
         .then(this._parseXml)
         .then(resolve)
         .catch(reject);
@@ -105,7 +105,7 @@ class MALjs {
   _get(url) {
     return new Promise((resolve, reject) => {
       var req = new XMLHttpRequest();
-      req.open('GET', url, true, this.user, this.password);
+      req.open('GET', url, true, this._user, this._password);
 
       req.onload = function() {
         if (req.status === 200) {
@@ -127,7 +127,7 @@ class MALjs {
     return new Promise((resolve, reject) => {
 
       var req = new XMLHttpRequest();
-      req.open('POST', url, true, this.user, this.password);
+      req.open('POST', url, true, this._user, this._password);
       req.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
       req.onload = function() {

@@ -3,15 +3,35 @@
 <head>
   <title></title>
 </head>
-<body>
-  <p style="font-family: monospace;">Open console to see results of tests.</p>
+<body style="font-family: monospace;">
+
+  <p>Open console to see more details.</p>
+  <pre id="error" style="color: red;"></pre>
+  <pre id="success" style="color: green;"></pre>
+
+  <script src="test.js"></script>
   <script src="env.js"></script>
   <script src="polyfills/polyfills.js"></script>
-  <script src="maljs-es5.js"></script>
+  <script src="es5/mal.js"></script>
   <script>
-    window.addEventListener('polyfillsLoaded', function() {
-      var api = new MALjs(window._ENV.user, window._ENV.password);
-    });
+      window.addEventListener('polyfillsLoaded', function() {
+        console.log('loaded polyfills');
+        var api = new MALjs(window._ENV.user, window._ENV.password);
+
+        it('should be able to set the username and password', function() {
+          if (
+            api._user != window._ENV.user ||
+            api._password != window._ENV.password
+            ) {
+            return false;
+          }
+
+          return true;
+        });
+
+
+      });
+
   </script>
 </body>
 </html>
