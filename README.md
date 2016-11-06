@@ -1,28 +1,28 @@
 # MALjs
 
-A json promise api wrapper for the MAL (myanimelist) api. http://myanimelist.net/modules.php?go=api
+A promise based json api wrapper for the MAL (myanimelist) api. http://myanimelist.net/modules.php?go=api
 
 ### Support
-All api requests return promises. Use a Promise polyfill if neccesarry.
+When using in the broweser es6 need to be converted to es5 to ensure maximum browser support. Polyfills for the Fetch, Promise and URL APIs need to be included in browsers that lack support. See the `polyfills/` directory for an example for a polyfill script.
 
 ### Usage
 
 ```js
 // create an new api instance with your myanimelist user name and password
-var api = new MALjs('MAL username', 'MAL password');
+const mal = new MALjs('MAL username', 'MAL password');
 
 // search my animelist
-api.search('search string')
+mal.search('search string')
   .then(result => result) // contains the json result on success
   .catch(err => err); // contains an error message if the request fails
 
 // Get the authenticated users animelist
-api.list()
+mal.list()
   .then(result => result)
   .catch(err => err);
 
 // adds an anime to the list
-api.add('71', { // '71' is the animes ID (retrieved from search())
+mal.anime.add('71', { // '71' is the animes ID (retrieved from search())
   episode: "1",
   status: "6", // 1/watching, 2/completed, 3/onhold, 4/dropped, 6/plantowatch
   score: "7"
@@ -31,14 +31,14 @@ api.add('71', { // '71' is the animes ID (retrieved from search())
   .catch(err => err);
 
 // Updates an anime on the list
-api.update('71', {
+mal.anime.update('71', {
   status: "1"
 })
   .then(result => result)
   .catch(err => err);
 
 // Deletes an anime from the list
-api.delete('71')
+mal.anime.delete('71')
   .then(result => result)
   .catch(err => err);
 
@@ -81,7 +81,7 @@ api.search('Full Metal')
     var animeId =  result.anime.entry[0].id;
 
     // Make a new request, adding the anime to the users list
-    return api.add(animeId);
+    return api.anime.add(animeId);
   })
   .then(result => {
     console.log('Anime added!', result);
@@ -98,9 +98,9 @@ var api = new MALjs('MAL username', 'MAL password');
 
 // Add multiple anime to the users myanimelist.
 Promise.all([
-  api.add('71'),
-  api.add('231'),
-  api.add('71')
+  api.anime.add('71'),
+  api.anime.add('231'),
+  api.anime.add('71')
 ])
   // When all promises resolve.
   .then(results => {
@@ -112,12 +112,9 @@ Promise.all([
   });
 ```
 
-### Build
-
-Install dependencies with `npm install`.
-
-Run `npm run build` to build source files.  
-Run `npm run watch` to watch file changes and build source files.
+### Build es5 files
+Install dependencies with `npm install`.  
+Run `npm run build` to build files.  
 
 ### Testing
 
@@ -133,4 +130,4 @@ window._ENV = {
 };
 ```
 
-Open the `test.html` file to run the Jasmine test suite. 
+Open `test.html` to run tests.
