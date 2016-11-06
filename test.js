@@ -8,7 +8,8 @@ function it(description, test) {
 
     document.querySelector('#success').innerHTML += 'Passed test: It '+ description + '<br>';
   } catch (err) {
-    document.querySelector('#error').innerHTML = err.stack;
+    document.querySelector('#error').innerHTML = 'Failed test: It '+ description + '<br>';
+    document.querySelector('#error').innerHTML += err.stack;
     throw err;
   }
 }
