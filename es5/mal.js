@@ -100,7 +100,7 @@ var MALjs = function () {
   }, {
     key: 'verifyCredentials',
     value: function verifyCredentials() {
-      return this._get('${this._base}/api/account/verify_credentials.xml');
+      return this._get(this._base + '/api/account/verify_credentials.xml');
     }
   }, {
     key: '_checkType',
