@@ -34,28 +34,20 @@
           this.done();
         });
 
-        it('should be able to parse xml', function() {
-          if (!api._parseXml(xmlString)) {
-           this.fail();
-          }
-
-          this.done();
-        });
-
         it('should be able to convert MAL\'s xml to json', function() {
-          var xml = api._parseXml(xmlString);
-          var object = api._toJson(xml);
+          api._xmlToJson(xmlString)
+            .then(object => {
+              if (
+                !object.anime ||
+                object.anime.length == 0 ||
+                object.anime[0].id !== 71
+              ) {
+                this.fail();
+              }
+              this.done();
+            })
+            .catch(this.fail);
 
-          console.log(object);
-
-          if (
-            !object.anime ||
-            object.anime.length == 0 ||
-            object.anime[0].id !== 71
-          ) {
-            this.fail();
-          }
-          this.done();
         });
 
         it('should be able to convert xml to json', function() {
