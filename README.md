@@ -97,10 +97,10 @@ Since the api uses promises you can use things like chaining and parallel reques
 var api = new MALjs('MAL username', 'MAL password');
 
 // Make the first request
-api.search('Full Metal')
+api.anime.search('Full Metal')
   .then(result => {
     // result.anime.entry contains an array of animes matching the search query
-    var animeId =  result.anime.entry[0].id;
+    var animeId =  result.anime[0].id;
 
     // Make a new request, adding the anime to the users list
     return api.anime.add(animeId);
