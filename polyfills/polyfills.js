@@ -37,14 +37,6 @@
     polyfillsNeeded.push(basePath + 'polyfills/promise.js');
   }
 
-  if (!'URL' in window) {
-    polyfillsNeeded.push(basePath + 'polyfills/url.js');
-  }
-
-  if (!('fetch' in window)) {
-    polyfillsNeeded.push(basePath + 'polyfills/fetch/fetch.js');
-  }
-
   // Shim for a Safari bug work around, safari sees HTMLElement
   // as an object not a function.
   if (typeof HTMLElement !== 'function') {

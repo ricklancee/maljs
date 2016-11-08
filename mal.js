@@ -1,90 +1,158 @@
 "use strict";
 
 class MALjs {
+
   constructor(user, password) {
+    if (!user || !password) {
+      throw new Error('MALjs requires a myanimelist.net username and password.');
+    }
+
     this._user = user;
     this._password = password;
 
-    if (!this._user || !this._password) {
-      throw new Error('MALjs requires a myanimelist.net username and password.');
+    this._parser = new DOMParser();
+
+    this.anime = {
+      search: (query) => {
+        return this.search(query, 'anime');
+      },
+      list: () => {
+        return this.list('anime');
+      },
+      add: (id, data) => {
+        return this.add(id, data, 'anime');
+      },
+      update: (id, data) => {
+        return this.update(id, data, 'anime');
+      },
+      delete: (id, data) => {
+        return this.delete(id, 'anime');
+      }
+    };
+
+    this.manga = {
+      search: (query) => {
+        return this.search(query, 'manga');
+      },
+      list: () => {
+        return this.list('manga');
+      },
+      add: (id, data) => {
+        return this.add(id, data, 'manga');
+      },
+      update: (id, data) => {
+        return this.update(id, data, 'manga');
+      },
+      delete: (id, data) => {
+        return this.delete(id, 'manga');
+      }
+    };
+
+  }
+
+  search(query, type) {
+    this._checkType(type);
+
+    return this._get(`http://myanimelist.net/api/${type}/search.xml?q=${query}`);
+  }
+
+  list(type) {
+    this._checkType(type);
+    return this._get(`http://myanimelist.net/malappinfo.php?u=${this._user}&status=all&type=${type}`);
+  }
+
+  add(id, data, type) {
+    this._checkType(type);
+
+    if (!data.entry) {
+      data = {entry: data};
     }
+
+    return this._post(`http://myanimelist.net/api/${type}list/add/${id}.xml`, data);
   }
 
-  search(query) {
-    return new Promise((resolve, reject) => {
-      this._get(`http://myanimelist.net/api/anime/search.xml?q=${query}`)
-        .then(this._parseXml)
-        .then(resolve)
-        .catch(reject);
-    });
+  update(id, data, type) {
+    this._checkType(type);
+
+    if (!data.entry) {
+      data = {entry: data};
+    }
+
+    return this._post(`http://myanimelist.net/api/${type}list/update/${id}.xml`, data);
   }
 
-  list() {
-    return new Promise((resolve, reject) => {
-      this._get(`http://myanimelist.net/malappinfo.php?u=${this._user}&status=all&type=anime`)
-        .then(this._parseXml)
-        .then(resolve)
-        .catch(reject);
-    });
-  }
-
-  add(id, data) {
-    return new Promise((resolve, reject) => {
-
-      if (!data.entry) {
-        data = {entry: data};
-      }
-
-      this._post(`http://myanimelist.net/api/animelist/add/${id}.xml`, data)
-        .then(resolve)
-        .catch(reject);
-    });
-  }
-
-  update(id, data) {
-    return new Promise((resolve, reject) => {
-
-      if (!data.entry) {
-        data = {entry: data};
-      }
-
-      this._post(`http://myanimelist.net/api/animelist/update/${id}.xml`, data)
-        .then(resolve)
-        .catch(reject);
-    });
-  }
-
-  delete(id) {
-    return new Promise((resolve, reject) => {
-      this._post(`http://myanimelist.net/api/animelist/delete/${id}.xml`)
-        .then(resolve)
-        .catch(reject);
-    });
+  delete(id, type) {
+    this._checkType(type);
+    return this._post(`http://myanimelist.net/api/${type}list/delete/${id}.xml`);
   }
 
   verifyCredentials() {
-    return new Promise((resolve, reject) => {
-      this._get('http://myanimelist.net/api/account/verify_credentials.xml')
-        .then(this._parseXml)
-        .then(resolve)
-        .catch(reject);
-    });
+    return this._get('http://myanimelist.net/api/account/verify_credentials.xml');
+  }
+
+  _checkType(type) {
+    if (type !== 'anime' && type !== 'manga') {
+      throw new Error('Only allowed types are anime and manga. incorrect type: '+type +' given.')
+    }
   }
 
   _parseXml(xmlString) {
-    return new Promise((resolve, reject) => {
-      parseString(xmlString, { explicitArray: false }, (err, result) => {
-        if (result) resolve(result);
-        if (err) reject(err);
-      });
-    });
+    const dom = this._parser.parseFromString(xmlString, "text/xml");
+
+    if (dom.documentElement.nodeName === "html") {
+      return false;
+    }
+
+    return dom;
+  }
+
+  _toJson(dom) {
+    const nodes = dom.childNodes;
+    const object = {};
+
+    for (let i = 0; i < nodes.length; i++) {
+      const node = nodes[i];
+      object[node.nodeName] = [];
+      const childNodes = node.childNodes;
+
+
+      for (let i = 0; i < childNodes.length; i++) {
+        const entryNode = childNodes[i];
+        const entryObject = {};
+
+        // Skip empty text nodes.
+        if (entryNode.nodeName === '#text')
+          continue;
+
+        const items = entryNode.childNodes;
+
+        for (let i = 0; i < items.length; i++) {
+          const item = items[i];
+
+          if (item.nodeName === '#text')
+            continue;
+
+          let value = item.innerHTML;
+
+          if (item.nodeName === 'id' || item.nodeName === 'episodes') {
+            value = parseInt(value, 10);
+          }
+
+          entryObject[item.nodeName] = value;
+        }
+
+        object[node.nodeName].push(entryObject);
+      }
+    }
+
+    return object;
   }
 
   _toXml(object) {
-    var xmlString = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>`;
+    let xmlString = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>`;
 
     function getProps(obj) {
-      for (var property in obj) {
+      for (let property in obj) {
         if (obj.hasOwnProperty(property)){
           if (obj[property].constructor == Object) {
             xmlString += `<${property}>`;
@@ -105,17 +173,25 @@ class MALjs {
   _get(url) {
     return new Promise((resolve, reject) => {
       var req = new XMLHttpRequest();
+
       req.open('GET', url, true, this._user, this._password);
 
-      req.onload = function() {
+      req.onload = () => {
         if (req.status === 200) {
-          resolve(req.response);
+          const data = req.response;
+          const xml = this._parseXml(data);
+
+          if (xml) {
+            resolve(this._toJson(xml));
+          } else {
+            reject('Failed to parse xml');
+          }
         } else {
           reject('request failed');
         }
       };
 
-      req.onerror = function() {
+      req.onerror = () => {
         reject('request failed');
       };
 
@@ -125,7 +201,6 @@ class MALjs {
 
   _post(url, data=null) {
     return new Promise((resolve, reject) => {
-
       var req = new XMLHttpRequest();
       req.open('POST', url, true, this._user, this._password);
       req.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -134,7 +209,7 @@ class MALjs {
         if (req.status === 200 || req.status === 201) {
           resolve(req.response);
         } else {
-          reject('request failed');
+          reject(req.response);
         }
       };
 
@@ -148,7 +223,6 @@ class MALjs {
       } else {
         req.send();
       }
-
     });
   }
 }

@@ -3,7 +3,7 @@
 A promise based json api wrapper for the MAL (myanimelist) api. http://myanimelist.net/modules.php?go=api
 
 ### Support
-When using in the broweser es6 need to be converted to es5 to ensure maximum browser support. Polyfills for the Fetch, Promise and URL APIs need to be included in browsers that lack support. See the `polyfills/` directory for an example for a polyfill script.
+ES6 files need to be converted to ES5 to ensure maximum browser support. Polyfills for the Promise API need to be included in browsers that lack support. See the `polyfills/` directory for an example for a polyfill script.
 
 ### Usage
 
@@ -119,6 +119,8 @@ Run `npm run build` to build files.
 ### Testing
 
 **NOTE: Tests are run against the live MAL Api, Don't use your actual MAL account if you don't want to alter your list**
+
+If you want to test locally run chrome with the ` --args --disable-web-security --user-data-dir` commands, becuase MAL blocks request from a non-origin.
 
 In order to test add the file `env.js` to the project root. Add your MAL credentials to be able to send requests to the MAL api.
 
