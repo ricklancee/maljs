@@ -4,13 +4,17 @@
 
 var it = function(description, test) {
   return new Promise((resolve, reject) => {
+    var failed = false;
     var testFN = {
       done: function() {
-        document.querySelector('#success').innerHTML += 'Passed test: It '+ description + '<br>';
+        if (!failed) {
+          document.querySelector('#success').innerHTML += 'Passed test: It '+ description + '<br>';
         resolve();
+        }
       },
       fail: function(msg) {
         document.querySelector('#error').innerHTML = 'Failed test: It '+ description + '.<br>('+msg+')<br>';
+        failed = true;
         reject();
       }
     };
