@@ -145,8 +145,8 @@
                 console.log(list);
 
                 if (
-                  list.myanimelist.length !== 2 ||
-                  list.myanimelist[1].series_animedb_id != '269'
+                  list.myanimelist.anime.length !== 1 ||
+                  list.myanimelist.anime[0].series_animedb_id != '269'
                 ) {
                   this.fail();
                 }
@@ -201,8 +201,8 @@
                 console.log(list);
 
                 if (
-                  list.myanimelist.length !== 2 ||
-                  list.myanimelist[1].series_mangadb_id != '12'
+                  list.myanimelist.manga.length !== 1 ||
+                  list.myanimelist.manga[0].series_mangadb_id != '12'
                 ) {
                   this.fail();
                 }

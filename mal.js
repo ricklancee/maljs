@@ -112,7 +112,14 @@ class MALjs {
 
     for (let i = 0; i < nodes.length; i++) {
       const node = nodes[i];
-      object[node.nodeName] = [];
+
+      if (node.nodeName === 'myanimelist') {
+        object[node.nodeName] = {};
+      } else {
+        object[node.nodeName] = [];
+      }
+
+
       const childNodes = node.childNodes;
 
 
@@ -141,7 +148,18 @@ class MALjs {
           entryObject[item.nodeName] = value;
         }
 
-        object[node.nodeName].push(entryObject);
+        if (node.nodeName === 'myanimelist') {
+          if (entryNode.nodeName === 'anime' || entryNode.nodeName === 'manga') {
+            if (!object[node.nodeName][entryNode.nodeName]) {
+              object[node.nodeName][entryNode.nodeName] = [];
+            }
+            object[node.nodeName][entryNode.nodeName].push(entryObject);
+          } else {
+            object[node.nodeName][entryNode.nodeName] = entryObject;
+          }
+        } else {
+          object[node.nodeName].push(entryObject);
+        }
       }
     }
 
