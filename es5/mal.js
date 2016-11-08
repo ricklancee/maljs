@@ -16,7 +16,7 @@ var MALjs = function () {
 
     this._user = user;
     this._password = password;
-
+    this._base = 'https://myanimelist.net';
     this._parser = new DOMParser();
 
     this.anime = {
@@ -61,13 +61,13 @@ var MALjs = function () {
     value: function search(query, type) {
       this._checkType(type);
 
-      return this._get('http://myanimelist.net/api/' + type + '/search.xml?q=' + query);
+      return this._get(this._base + '/api/' + type + '/search.xml?q=' + query);
     }
   }, {
     key: 'list',
     value: function list(type) {
       this._checkType(type);
-      return this._get('http://myanimelist.net/malappinfo.php?u=' + this._user + '&status=all&type=' + type);
+      return this._get(this._base + '/malappinfo.php?u=' + this._user + '&status=all&type=' + type);
     }
   }, {
     key: 'add',
@@ -78,7 +78,7 @@ var MALjs = function () {
         data = { entry: data };
       }
 
-      return this._post('http://myanimelist.net/api/' + type + 'list/add/' + id + '.xml', data);
+      return this._post(this._base + '/api/' + type + 'list/add/' + id + '.xml', data);
     }
   }, {
     key: 'update',
@@ -89,18 +89,18 @@ var MALjs = function () {
         data = { entry: data };
       }
 
-      return this._post('http://myanimelist.net/api/' + type + 'list/update/' + id + '.xml', data);
+      return this._post(this._base + '/api/' + type + 'list/update/' + id + '.xml', data);
     }
   }, {
     key: 'delete',
     value: function _delete(id, type) {
       this._checkType(type);
-      return this._post('http://myanimelist.net/api/' + type + 'list/delete/' + id + '.xml');
+      return this._post(this._base + '/api/' + type + 'list/delete/' + id + '.xml');
     }
   }, {
     key: 'verifyCredentials',
     value: function verifyCredentials() {
-      return this._get('http://myanimelist.net/api/account/verify_credentials.xml');
+      return this._get('${this._base}/api/account/verify_credentials.xml');
     }
   }, {
     key: '_checkType',
@@ -128,7 +128,13 @@ var MALjs = function () {
 
       for (var i = 0; i < nodes.length; i++) {
         var node = nodes[i];
-        object[node.nodeName] = [];
+
+        if (node.nodeName === 'myanimelist') {
+          object[node.nodeName] = {};
+        } else {
+          object[node.nodeName] = [];
+        }
+
         var childNodes = node.childNodes;
 
         for (var _i = 0; _i < childNodes.length; _i++) {
@@ -154,7 +160,18 @@ var MALjs = function () {
             entryObject[item.nodeName] = value;
           }
 
-          object[node.nodeName].push(entryObject);
+          if (node.nodeName === 'myanimelist') {
+            if (entryNode.nodeName === 'anime' || entryNode.nodeName === 'manga') {
+              if (!object[node.nodeName][entryNode.nodeName]) {
+                object[node.nodeName][entryNode.nodeName] = [];
+              }
+              object[node.nodeName][entryNode.nodeName].push(entryObject);
+            } else {
+              object[node.nodeName][entryNode.nodeName] = entryObject;
+            }
+          } else {
+            object[node.nodeName].push(entryObject);
+          }
         }
       }
 
