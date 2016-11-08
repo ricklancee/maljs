@@ -87,7 +87,7 @@ class MALjs {
   }
 
   verifyCredentials() {
-    return this._get('${this._base}/api/account/verify_credentials.xml');
+    return this._get(`${this._base}/api/account/verify_credentials.xml`);
   }
 
   _checkType(type) {
