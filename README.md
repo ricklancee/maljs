@@ -6,11 +6,10 @@ This api has not been tested in production environments.
 
 ### Support
 All api requests return promises. Use a Promise polyfill where neccesarry.
-For browsers that don't support ES6 see the es5 file in the `es5/` directory.
+For browsers that don't support ES6 see the ES5 file in the `es5/` directory.
 
 ### Usage
-
-Anime calls are made with `API.anime.METHOD`, manga calls with `API.manga.METHOD`. See below for an example.
+To make manga calls, replace `anime` with `manga`.
 
 ```js
 // create an new api instance with your myanimelist user name and password
