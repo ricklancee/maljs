@@ -2,7 +2,7 @@
 
 A promise based json api wrapper for the MAL (myanimelist) api. http://myanimelist.net/modules.php?go=api
 
-This api has not been tested in production environments. 
+This api has not been tested in production environments. In order to use the MAL api you are required to be whitelisted [as discussed in this topic](https://myanimelist.net/forum/?topicid=692311).
 
 ### Support
 All api requests return promises. Use a Promise polyfill where neccesarry.
@@ -141,9 +141,9 @@ Run `npm run build` to build files.
 
 **NOTE: Tests are run against the live MAL Api, Don't use your actual MAL account if you don't want to alter your list**
 
-If you want to test locally run chrome with the ` --args --disable-web-security --user-data-dir` commands, becuase MAL blocks request from a non-origin.
+If you want to test locally run chrome with the ` --args --disable-web-security --user-data-dir` (MACos) commands, becuase MAL has a `No-Access-Control-Allow-Origin` header set. However keep in mind this will causes browser stability and security issues.
 
-In order to test add the file `env.js` to the project root. Add your MAL credentials to be able to send requests to the MAL api.
+In order to test add the file `env.js` to the project root with MAL credentials.
 
 ```js
 // env.js contents
