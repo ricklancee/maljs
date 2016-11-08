@@ -9,7 +9,7 @@
   <pre id="error" style="color: red;"></pre>
   <pre id="success" style="color: green;"></pre>
 
-  <script src="test.js"></script>
+  <script src="it.js"></script>
   <script src="env.js"></script>
   <script src="polyfills/polyfills.js"></script>
   <script src="mal.js"></script>
@@ -40,7 +40,7 @@
               if (
                 !object.anime ||
                 object.anime.length == 0 ||
-                object.anime[0].id !== 71
+                object.anime[0].id != 71
               ) {
                 this.fail();
               }
@@ -73,7 +73,7 @@
           api.anime.search(searchString).then(result => {
             console.log(result);
 
-            if(!result.anime[0].id === 269) {
+            if(!result.anime[0].id == 269) {
               this.fail();
             }
             this.done();
@@ -87,7 +87,7 @@
           api.manga.search(searchString).then(result => {
             console.log(result);
 
-            if(!result.manga[0].id === 12) {
+            if(!result.manga[0].id == 12) {
               this.fail();
             }
 

@@ -2,11 +2,10 @@
 
 A promise based json api wrapper for the MAL (myanimelist) api. http://myanimelist.net/modules.php?go=api
 
-This api has not been tested in production environments. In order to use the MAL api you are required to be whitelisted [as discussed in this topic](https://myanimelist.net/forum/?topicid=692311).
+This api has not been tested in production environments. To use the MAL api in your browser you are required to be whitelisted [as discussed in this topic](https://myanimelist.net/forum/?topicid=692311).  
 
 ### Support
-All api requests return promises. Use a Promise polyfill where neccesarry.
-For browsers that don't support ES6 see the ES5 file in the `es5/` directory.
+All api requests return promises, if you are using in the browser instead of nodejs, use a Promise polyfill where neccesarry. For browsers that don't support ES6 see the ES5 file in the `es5/` directory.
 
 ### Usage
 To make manga calls, replace `anime` with `manga`.
@@ -147,10 +146,24 @@ In order to test add the file `env.js` to the project root with MAL credentials.
 
 ```js
 // env.js contents
-window._ENV = {
-  user: 'username',
-  password: 'password',
-};
+(function() {
+  var root = this;
+
+  var env = {
+    user: 'username',
+    password: 'password',
+  };
+
+  if (typeof exports !== 'undefined') {
+    if (typeof module !== 'undefined' && module.exports) {
+      exports = module.exports = env;
+    }
+    exports._ENV = env;
+  } else {
+    root._ENV = env;
+  }
+}).call(this);
+
 ```
 
-Open `test.html` to run tests.
+Open `test.html` or run `test-node.js` to execute tests.

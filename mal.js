@@ -121,6 +121,19 @@
         if (isNode) {
           this._parser.parseString(xmlString, (err, result) => {
 
+            // Strip out entry prop
+            if (result.anime && result.anime.entry) {
+              var entries = result.anime.entry;
+              delete result.anime.entry;
+              result.anime = entries;
+            }
+
+            if (result.manga && result.manga.entry) {
+              var entries = result.manga.entry;
+              delete result.manga.entry;
+              result.manga = entries;
+            }
+
             if (err) {
               reject(err);
             } else {
