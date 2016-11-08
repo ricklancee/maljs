@@ -9,7 +9,7 @@ class MALjs {
 
     this._user = user;
     this._password = password;
-
+    this._base = 'https://myanimelist.net';
     this._parser = new DOMParser();
 
     this.anime = {
@@ -53,12 +53,12 @@ class MALjs {
   search(query, type) {
     this._checkType(type);
 
-    return this._get(`http://myanimelist.net/api/${type}/search.xml?q=${query}`);
+    return this._get(`${this._base}/api/${type}/search.xml?q=${query}`);
   }
 
   list(type) {
     this._checkType(type);
-    return this._get(`http://myanimelist.net/malappinfo.php?u=${this._user}&status=all&type=${type}`);
+    return this._get(`${this._base}/malappinfo.php?u=${this._user}&status=all&type=${type}`);
   }
 
   add(id, data, type) {
@@ -68,7 +68,7 @@ class MALjs {
       data = {entry: data};
     }
 
-    return this._post(`http://myanimelist.net/api/${type}list/add/${id}.xml`, data);
+    return this._post(`${this._base}/api/${type}list/add/${id}.xml`, data);
   }
 
   update(id, data, type) {
@@ -78,16 +78,16 @@ class MALjs {
       data = {entry: data};
     }
 
-    return this._post(`http://myanimelist.net/api/${type}list/update/${id}.xml`, data);
+    return this._post(`${this._base}/api/${type}list/update/${id}.xml`, data);
   }
 
   delete(id, type) {
     this._checkType(type);
-    return this._post(`http://myanimelist.net/api/${type}list/delete/${id}.xml`);
+    return this._post(`${this._base}/api/${type}list/delete/${id}.xml`);
   }
 
   verifyCredentials() {
-    return this._get('http://myanimelist.net/api/account/verify_credentials.xml');
+    return this._get('${this._base}/api/account/verify_credentials.xml');
   }
 
   _checkType(type) {
