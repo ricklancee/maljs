@@ -2,22 +2,26 @@
 
 A promise based json api wrapper for the MAL (myanimelist) api. http://myanimelist.net/modules.php?go=api
 
+This api has not been tested in production environments, use at your own risk. 
+
 ### Support
 ES6 files need to be converted to ES5 to ensure maximum browser support. Polyfills for the Promise API need to be included in browsers that lack support. See the `polyfills/` directory for an example for a polyfill script.
 
 ### Usage
+
+Anime calls are made with `API.anime.METHOD`, manga calls with `API.manga.METHOD`. See below for an example.
 
 ```js
 // create an new api instance with your myanimelist user name and password
 const mal = new MALjs('MAL username', 'MAL password');
 
 // search my animelist
-mal.search('search string')
+mal.anime.search('search string')
   .then(result => result) // contains the json result on success
   .catch(err => err); // contains an error message if the request fails
 
 // Get the authenticated users animelist
-mal.list()
+mal.anime.list()
   .then(result => result)
   .catch(err => err);
 
@@ -49,7 +53,7 @@ api.verifyCredentials()
 
 ```
 
-Anime values *used as data in `add()` and `update()` calls*
+Anime values 
 - episode. *int*
 - status. *int OR string. 1/watching, 2/completed, 3/onhold, 4/dropped, 6/plantowatch*
 - score. *int*
@@ -65,6 +69,23 @@ Anime values *used as data in `add()` and `update()` calls*
 - comments. *string*
 - fansub_group. *string*
 - tags. *string. tags separated by commas*
+
+Manga Values  
+- chapter. *int*
+- volume. *int*
+- status. *int OR string. 1/reading, 2/completed, 3/onhold, 4/dropped, 6/*plantoread
+- score. *int*
+- times_reread. *int*
+- reread_value. *int*
+- date_start. *date. mmddyyyy*
+- date_finish. *date. mmddyyyy*
+- priority. *int*
+- enable_discussion. *int. 1=enable, 0=disable*
+- enable_rereading. *int. 1=enable, 0=disable*
+- comments. *string*
+- scan_group. *string*
+- tags. *string. tags separated by commas*
+- retail_volumes. *int*
 
 ### Fun with promises
 Since the api uses promises you can use things like chaining and parallel requests.
