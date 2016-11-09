@@ -8,9 +8,15 @@ This api has not been tested in production environments. To use the MAL api in y
 All api requests return promises, if you are using in the browser instead of nodejs, use a Promise polyfill where neccesarry. For browsers that don't support ES6 see the ES5 file in the `es5/` directory.
 
 ### Usage
+To use it in node install the dependencies with `npm install --production` and require the `mal.js` file.
+
+To use in the browser include the es5 file and load a promise polyfill if neccesarry.
+
 To make manga calls, replace `anime` with `manga`.
 
 ```js
+// for node require the file first: const MALjs = require('./mal');
+
 // create an new api instance with your myanimelist user name and password
 const mal = new MALjs('MAL username', 'MAL password');
 
