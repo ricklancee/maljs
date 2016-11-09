@@ -1,7 +1,6 @@
 "use strict";
 
 (function() {
-  const root = this;
   var isNode = typeof exports !== 'undefined';
   var xml2js;
   var request;
@@ -338,6 +337,6 @@
     }
     exports.MALjs = MALjs;
   } else {
-    root.MALjs = MALjs;
+    window.MALjs = MALjs;
   }
-}).call(this);
+})();
