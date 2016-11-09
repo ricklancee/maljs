@@ -166,4 +166,4 @@ In order to test add the file `env.js` to the project root with MAL credentials.
 
 ```
 
-Open `test.html` or run `test-node.js` to execute tests.
+Open `test.html` in the browser or run `node.js` in node to execute tests.
