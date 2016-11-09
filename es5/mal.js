@@ -5,7 +5,6 @@ var _createClass = function () { function defineProperties(target, props) { for 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 (function () {
-  var root = this;
   var isNode = typeof exports !== 'undefined';
   var xml2js;
   var request;
@@ -366,6 +365,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     }
     exports.MALjs = MALjs;
   } else {
-    root.MALjs = MALjs;
+    window.MALjs = MALjs;
   }
-}).call(undefined);
+})();
