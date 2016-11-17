@@ -1,6 +1,11 @@
 'use strict';
 
 (function () {
+  var polyfillsNeeded = [];
+  var polyFillsLoadedEvent = new CustomEvent('polyfillsLoaded', {
+    bubbles: true
+  });
+
   var loadScripts = function loadScripts(urls, succesCB, failCB) {
     var count = urls.length;
     var errored = false;
@@ -23,46 +28,16 @@
     });
   };
 
-  // The base path of the polyfills
-  var scriptSrc = document.querySelector('script[src*="polyfills/polyfills.js"]').src;
-  var basePath = scriptSrc.match(/^(.*)polyfills\/polyfills\.js$/i);
-  if (basePath) {
-    basePath = basePath[1];
-  }
-
-  var polyfillsNeeded = [];
-  var waitForWebcomponents = false;
-
   if (!('Promise' in window)) {
-    polyfillsNeeded.push(basePath + 'polyfills/promise.js');
+    polyfillsNeeded.push('./polyfills/promise.js');
   }
-
-  // Shim for a Safari bug work around, safari sees HTMLElement
-  // as an object not a function.
-  if (typeof HTMLElement !== 'function') {
-    var _HTMLElement = function _HTMLElement() {};
-    _HTMLElement.prototype = HTMLElement.prototype;
-    HTMLElement = _HTMLElement;
-  }
-
-  var polyFillsLoadedEvent = new CustomEvent('polyfillsLoaded', {
-    bubbles: true
-  });
 
   // Load the polyfills
   loadScripts(polyfillsNeeded, function () {
-    if (waitForWebcomponents) {
-      window.addEventListener('WebComponentsReady', function () {
-        requestAnimationFrame(function () {
-          document.dispatchEvent(polyFillsLoadedEvent);
-        });
-      });
-    } else {
-      requestAnimationFrame(function () {
-        document.dispatchEvent(polyFillsLoadedEvent);
-      });
-    }
+    requestAnimationFrame(function () {
+      document.dispatchEvent(polyFillsLoadedEvent);
+    });
   }, function () {
-    throw new Error('Failed to load required polyfills');
+    throw new Error('Failed to load promise polyfill');
   });
 })();
