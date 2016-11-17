@@ -1,0 +1,23 @@
+{
+  "name": "MALjs",
+  "description": "Promise based json api wrapper for the MAL (myanimelist) api",
+  "main": "mal.js",
+  "authors": [
+    "Rick Lancee"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "myanimelist",
+    "mal",
+    "api",
+    "json",
+    "api wrapper"
+  ],
+  "homepage": "https://github.com/ricklancee/maljs",
+  "private": false,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components"
+  ]
+}

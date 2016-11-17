@@ -1,7 +1,14 @@
 {
-  "name": "maljs",
-  "version": "0.0.1",
-  "description": "A js json api wrapper for the myanimelist api",
+  "name": "MALjs",
+  "version": "0.1.0",
+  "description": "Promise based json api wrapper for the MAL (myanimelist) api",
+  "tags": [
+    "myanimelist",
+    "mal",
+    "api",
+    "json",
+    "api wrapper"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ricklancee/maljs.git"
@@ -11,6 +18,7 @@
   "bugs": {
     "url": "https://github.com/ricklancee/maljs/issues"
   },
+  "license": "MIT",
   "scripts": {
     "es5": "./node_modules/.bin/babel --presets=es2015 ./mal.js --out-dir ./es5/",
     "uglify": "./node_modules/.bin/uglifyjs es5/mal.js --comments --mangle --output es5/mal.min.js",
