@@ -19,18 +19,7 @@
     "url": "https://github.com/ricklancee/maljs/issues"
   },
   "license": "MIT",
-  "scripts": {
-    "es5": "./node_modules/.bin/babel --presets=es2015 ./mal.js --out-dir ./es5/",
-    "uglify": "./node_modules/.bin/uglifyjs es5/mal.js --comments --mangle --output es5/mal.min.js",
-    "build": "npm run es5 && npm run uglify"
-  },
   "homepage": "https://github.com/ricklancee/maljs#readme",
-  "devDependencies": {
-    "babel-cli": "^6.18.0",
-    "babel-preset-es2015": "^6.18.0",
-    "chalk": "^1.1.3",
-    "uglify-js": "^2.7.4"
-  },
   "dependencies": {
     "request": "^2.78.0",
     "xml2js": "^0.4.17"
