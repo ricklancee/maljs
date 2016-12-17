@@ -1,6 +1,6 @@
 "use strict";
 
-const MALjs = function() {
+const MALjs = function(username, password) {
 
 }
 
