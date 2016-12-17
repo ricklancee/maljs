@@ -34,7 +34,7 @@ test('it is able to search an anime', async t  => {
 
     const animeResults = await api.search('full metal', 'anime');
 
-    t.is(requestStub.args[0][0], "https://myanimelist.net/api/anime/search.xml?q=full metal");
+    t.is(requestStub.args[0][0], "https://myanimelist.net/api/anime/search.xml?q=full%20metal");
     t.is(parserStub.args[0][0], xmlString);
     t.deepEqual(animeResults, jsonData);
 });

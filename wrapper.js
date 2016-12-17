@@ -27,7 +27,7 @@ const wrapper = function(request, parser, user = null, pass = null) {
     search(query, type) {
       checkType(type);
 
-      const endpoint = `${baseUrl}/api/${type}/search.xml?q=${query}`;
+      const endpoint = `${baseUrl}/api/${type}/search.xml?q=${encodeURIComponent(query)}`;
 
       return getAndParseXml(endpoint);
     }
