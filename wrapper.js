@@ -8,14 +8,24 @@ const wrapper = function(request, parser, user = null, pass = null) {
   const allowedStatuses = ['all', 'watching', 'completed', 'onhold', 'dropped', 'plantowatch'];
 
   const getAndParseXml = function(endpoint) {
-    return request.get(endpoint).then(xml => {
+    return request.get(endpoint, {
+      auth: {
+        username,
+        password
+      }
+    }).then(xml => {
       return parser.toJson(xml);
     });
   };
 
   const dataToXmlAndPost = function(endpoint, json) {
     return parser.toXml(json).then(xml => {
-      return request.post(endpoint, xml);
+      return request.post(endpoint, {
+        auth: {
+          username,
+          password
+        }
+      }, xml);
     });
   };
 
