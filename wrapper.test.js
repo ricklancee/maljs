@@ -34,10 +34,14 @@ test('it is able to search an anime', async t  => {
     const api = wrapper(request, parser);
 
     const animeResults = await api.search('full metal', 'anime');
+    const animeResultsShorthand = await api.anime.search('full metal');
 
     t.is(requestStub.args[0][0], "https://myanimelist.net/api/anime/search.xml?q=full%20metal");
     t.is(parserStub.args[0][0], xmlString);
+    t.is(requestStub.args[1][0], "https://myanimelist.net/api/anime/search.xml?q=full%20metal");
+    t.is(parserStub.args[1][0], xmlString);
     t.deepEqual(animeResults, jsonData);
+    t.deepEqual(animeResultsShorthand, jsonData);
 });
 
 test('it should throw an error when calling search() with an invalid type', t => {

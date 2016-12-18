@@ -23,14 +23,20 @@ const wrapper = function(request, parser, user = null, pass = null) {
     }
   };
 
+  // Endpoint calls
+  const search = function(query, type) {
+    checkType(type);
+
+    const endpoint = `${baseUrl}/api/${type}/search.xml?q=${encodeURIComponent(query)}`;
+
+    return getAndParseXml(endpoint);
+  };
+
   return {
-    search(query, type) {
-      checkType(type);
-
-      const endpoint = `${baseUrl}/api/${type}/search.xml?q=${encodeURIComponent(query)}`;
-
-      return getAndParseXml(endpoint);
-    }
+    anime: {
+      search: (query) => search(query, 'anime')
+    },
+    search
   }
 }
 
