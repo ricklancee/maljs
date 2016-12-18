@@ -15,7 +15,7 @@ const wrapper = function(request, parser, user = null, pass = null) {
     return parser.toXml(json).then(xml => {
       return request.post(endpoint, xml);
     });
-  }
+  };
 
   const checkType = function(type) {
     if (type !== 'anime' && type !== 'manga') {

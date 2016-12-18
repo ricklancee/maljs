@@ -1,7 +1,7 @@
 {
   "name": "MALjs",
   "description": "Promise based json api wrapper for the MAL (myanimelist) api",
-  "main": "mal.js",
+  "main": "mal-browser.js",
   "authors": [
     "Rick Lancee"
   ],

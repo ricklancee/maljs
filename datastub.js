@@ -2,12 +2,12 @@ export const xmlString = `<?xml version="1.0" encoding="utf-8"?> <anime> <entry>
 
 export const jsonData = [
   {
-    "id": "71",
+    "id": 71,
     "title": "Full Metal Panic!",
     "english": "Full Metal Panic!",
     "synonyms": "FMP; Fullmetal Panic!",
-    "episodes": "24",
-    "score": "7.81",
+    "episodes": 24,
+    "score": 7.81,
     "type": "TV",
     "status": "Finished Airing",
     "start_date": "2002-01-08",
@@ -16,12 +16,12 @@ export const jsonData = [
     "image": "https://myanimelist.cdn-dena.com/images/anime/2/75259.jpg"
   },
   {
-    "id": "72",
+    "id": 72,
     "title": "Full Metal Panic? Fumoffu",
     "english": "Full Metal Panic? Fumoffu",
     "synonyms": "Full Metal Panic Fumoffu; Fullmetal Panic? Fumoffu",
-    "episodes": "12",
-    "score": "8.21",
+    "episodes": 12,
+    "score": 8.21,
     "type": "TV",
     "status": "Finished Airing",
     "start_date": "2003-08-26",
@@ -30,12 +30,12 @@ export const jsonData = [
     "image": "https://myanimelist.cdn-dena.com/images/anime/4/75260.jpg"
   },
   {
-    "id": "73",
+    "id": 73,
     "title": "Full Metal Panic! The Second Raid",
     "english": "Full Metal Panic! The Second Raid",
     "synonyms": "Full Metal Panic! TSR",
-    "episodes": "13",
-    "score": "8.06",
+    "episodes": 13,
+    "score": 8.06,
     "type": "TV",
     "status": "Finished Airing",
     "start_date": "2005-07-14",
@@ -44,12 +44,12 @@ export const jsonData = [
     "image": "https://myanimelist.cdn-dena.com/images/anime/11/75261.jpg"
   },
   {
-    "id": "121",
+    "id": 121,
     "title": "Fullmetal Alchemist",
     "english": "Fullmetal Alchemist",
     "synonyms": "Hagane no Renkinjutsushi; FMA; Full Metal Alchemist",
-    "episodes": "51",
-    "score": "8.33",
+    "episodes": 51,
+    "score": 8.33,
     "type": "TV",
     "status": "Finished Airing",
     "start_date": "2003-10-04",
@@ -58,11 +58,12 @@ export const jsonData = [
     "image": "https://myanimelist.cdn-dena.com/images/anime/10/75815.jpg"
   },
   {
-    "id": "1015",
+    "id": 1015,
     "title": "Full Metal Panic! The Second Raid: Wari to Hima na Sentaichou no Ichinichi",
+    "english": "",
     "synonyms": "The Commanding Officer's Rather Quiet Day; Full Metal Panic! The Second Raid Special; Full Metal Panic! The Second Raid OVA",
-    "episodes": "1",
-    "score": "7.78",
+    "episodes": 1,
+    "score": 7.78,
     "type": "Special",
     "status": "Finished Airing",
     "start_date": "2006-05-26",
@@ -71,11 +72,12 @@ export const jsonData = [
     "image": "https://myanimelist.cdn-dena.com/images/anime/3/23458.jpg"
   },
   {
-    "id": "2601",
+    "id": 2601,
     "title": "Juusenki L-Gaim III: Full Metal Soldier",
+    "english": "",
     "synonyms": "Heavy Metal L-Gaim OVA; Heavy Metal L-Gaim III: Full Metal Soldier",
-    "episodes": "1",
-    "score": "6.50",
+    "episodes": 1,
+    "score": 6.5,
     "type": "OVA",
     "status": "Finished Airing",
     "start_date": "1987-03-28",
@@ -84,11 +86,12 @@ export const jsonData = [
     "image": "https://myanimelist.cdn-dena.com/images/anime/3/24615.jpg"
   },
   {
-    "id": "6291",
+    "id": 6291,
     "title": "Full Metal Panic! The Second Raid Episode 000",
+    "english": "",
     "synonyms": "Full Metal Panic! The Second Raid Pre-festival: Night of the Light Novel",
-    "episodes": "1",
-    "score": "7.55",
+    "episodes": 1,
+    "score": 7.55,
     "type": "Special",
     "status": "Finished Airing",
     "start_date": "2005-07-06",
@@ -97,10 +100,13 @@ export const jsonData = [
     "image": "https://myanimelist.cdn-dena.com/images/anime/9/45048.jpg"
   },
   {
-    "id": "31931",
+    "id": 31931,
     "title": "Full Metal Panic! (Shinsaku)",
-    "episodes": "0",
-    "score": "7.48",
+    "english": "",
+    "synonyms": "",
+    "episodes": 0,
+    "score": 7.48,
+    "type": "",
     "status": "Not yet aired",
     "start_date": "2017-10-00",
     "end_date": "0000-00-00",
@@ -108,3 +114,44 @@ export const jsonData = [
     "image": "https://myanimelist.cdn-dena.com/images/anime/3/77141.jpg"
   }
 ];
+
+export const animeObject = {
+  episode: 11,
+  status: 1,
+  score: 7,
+  storage_type: 1,
+  storage_value: 1.1,
+  times_rewatched: 1,
+  rewatch_value: 2,
+  date_start: '01012000',
+  date_finish: '02012000',
+  priority: null,
+  enable_discussion: 1,
+  enable_rewatching: 1,
+  comments: '',
+  fansub_group: '',
+  tags: 'test tag, 2nd tag',
+};
+
+
+export const animeXml = '<?xml version="1.0" encoding="UTF-8"?><entry><episode>11</episode><status>1</status><score>7</score><storage_type>1</storage_type><storage_value>1.1</storage_value><times_rewatched>1</times_rewatched><rewatch_value>2</rewatch_value><date_start>01012000</date_start><date_finish>02012000</date_finish><priority></priority><enable_discussion>1</enable_discussion><enable_rewatching>1</enable_rewatching><comments></comments><fansub_group></fansub_group><tags>test tag, 2nd tag</tags></entry>';
+
+export const mangaObject = {
+  chapter: 6,
+  volume: 1,
+  status: 1,
+  score: 8,
+  times_reread: 2,
+  reread_value: 3,
+  date_start: '01012000',
+  date_finish: '02012000',
+  priority: null,
+  enable_discussion: 1,
+  enable_rereading: 1,
+  comments: '',
+  scan_group: '',
+  tags: 'tag,tag2,tag3',
+  retail_volumes: 1
+};
+
+export const mangaXml = '<?xml version="1.0" encoding="UTF-8"?><entry><chapter>6</chapter><volume>1</volume><status>1</status><score>8</score><times_reread>2</times_reread><reread_value>3</reread_value><date_start>01012000</date_start><date_finish>02012000</date_finish><priority></priority><enable_discussion>1</enable_discussion><enable_rereading>1</enable_rereading><comments></comments><scan_group></scan_group><tags>tag,tag2,tag3</tags><retail_volumes>1</retail_volumes></entry>';

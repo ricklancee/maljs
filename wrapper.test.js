@@ -12,7 +12,8 @@ test.beforeEach(() => {
     post: () => {}
   };
   parser = {
-    toJson: () => {}
+    toJson: () => {},
+    toXml: () => {}
   };
 });
 
@@ -48,8 +49,14 @@ test('it should throw an error when calling search() with an invalid type', t =>
     }, `Only types 'anime' and manga' are supported; Type "${notatype}" is not.`);
 });
 
+test.todo('get animelist method');
+// test('it should be able to list the users animelist', t => {
+//   const api = wrapper(request, parser);
+
+//   api.list('anime');
+// });
+
 test.todo('add anime method');
 test.todo('update anime method');
 test.todo('delete anime method');
-test.todo('get animelist method');
 test.todo('verify credentials method');

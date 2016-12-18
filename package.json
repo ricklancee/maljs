@@ -13,7 +13,7 @@
     "type": "git",
     "url": "git+https://github.com/ricklancee/maljs.git"
   },
-  "main": "mal.js",
+  "main": "mal-node.js",
   "author": "Rick Lancee",
   "bugs": {
     "url": "https://github.com/ricklancee/maljs/issues"
