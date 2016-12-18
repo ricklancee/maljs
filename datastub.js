@@ -155,3 +155,100 @@ export const mangaObject = {
 };
 
 export const mangaXml = '<?xml version="1.0" encoding="UTF-8"?><entry><chapter>6</chapter><volume>1</volume><status>1</status><score>8</score><times_reread>2</times_reread><reread_value>3</reread_value><date_start>01012000</date_start><date_finish>02012000</date_finish><priority></priority><enable_discussion>1</enable_discussion><enable_rereading>1</enable_rereading><comments></comments><scan_group></scan_group><tags>tag,tag2,tag3</tags><retail_volumes>1</retail_volumes></entry>';
+
+export const listXml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><myanimelist><myinfo><user_id>5551097</user_id><user_name>apitest1234</user_name><user_watching>0</user_watching><user_completed>0</user_completed><user_onhold>0</user_onhold><user_dropped>0</user_dropped><user_plantowatch>0</user_plantowatch><user_days_spent_watching>0.00</user_days_spent_watching></myinfo><anime><series_animedb_id>32937</series_animedb_id><series_title>Kono Subarashii Sekai ni Shukufuku wo! 2</series_title><series_synonyms>Give Blessings to This Wonderful World! 2; KonoSuba: God's Blessing on This Wonderful World! Second Season</series_synonyms><series_type>1</series_type><series_episodes>0</series_episodes><series_status>3</series_status><series_start>2017-01-12</series_start><series_end>0000-00-00</series_end><series_image>https://myanimelist.cdn-dena.com/images/anime/2/83188.jpg</series_image><my_id>0</my_id><my_watched_episodes>0</my_watched_episodes><my_start_date>0000-00-00</my_start_date><my_finish_date>0000-00-00</my_finish_date><my_score>0</my_score><my_status>6</my_status><my_rewatching>0</my_rewatching><my_rewatching_ep>0</my_rewatching_ep><my_last_updated>1482066996</my_last_updated><my_tags></my_tags></anime><anime><series_animedb_id>32937</series_animedb_id><series_title>Kono Subarashii Sekai ni Shukufuku wo! 2</series_title><series_synonyms>Give Blessings to This Wonderful World! 2; KonoSuba: God's Blessing on This Wonderful World! Second Season</series_synonyms><series_type>1</series_type><series_episodes>0</series_episodes><series_status>3</series_status><series_start>2017-01-12</series_start><series_end>0000-00-00</series_end><series_image>https://myanimelist.cdn-dena.com/images/anime/2/83188.jpg</series_image><my_id>0</my_id><my_watched_episodes>0</my_watched_episodes><my_start_date>0000-00-00</my_start_date><my_finish_date>0000-00-00</my_finish_date><my_score>0</my_score><my_status>6</my_status><my_rewatching>0</my_rewatching><my_rewatching_ep>0</my_rewatching_ep><my_last_updated>1482066996</my_last_updated><my_tags></my_tags></anime></myanimelist>";
+
+export const listXmlSingle = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><myanimelist><myinfo><user_id>5551097</user_id><user_name>apitest1234</user_name><user_watching>0</user_watching><user_completed>0</user_completed><user_onhold>0</user_onhold><user_dropped>0</user_dropped><user_plantowatch>0</user_plantowatch><user_days_spent_watching>0.00</user_days_spent_watching></myinfo><anime><series_animedb_id>32937</series_animedb_id><series_title>Kono Subarashii Sekai ni Shukufuku wo! 2</series_title><series_synonyms>Give Blessings to This Wonderful World! 2; KonoSuba: God's Blessing on This Wonderful World! Second Season</series_synonyms><series_type>1</series_type><series_episodes>0</series_episodes><series_status>3</series_status><series_start>2017-01-12</series_start><series_end>0000-00-00</series_end><series_image>https://myanimelist.cdn-dena.com/images/anime/2/83188.jpg</series_image><my_id>0</my_id><my_watched_episodes>0</my_watched_episodes><my_start_date>0000-00-00</my_start_date><my_finish_date>0000-00-00</my_finish_date><my_score>0</my_score><my_status>6</my_status><my_rewatching>0</my_rewatching><my_rewatching_ep>0</my_rewatching_ep><my_last_updated>1482066996</my_last_updated><my_tags></my_tags></anime></myanimelist>";
+
+export const listObject = {
+  "myinfo": {
+    "user_id": 5551097,
+    "user_name": "apitest1234",
+    "user_watching": 0,
+    "user_completed": 0,
+    "user_onhold": 0,
+    "user_dropped": 0,
+    "user_plantowatch": 0,
+    "user_days_spent_watching": 0
+  },
+  "anime": [
+    {
+      "series_animedb_id": 32937,
+      "series_title": "Kono Subarashii Sekai ni Shukufuku wo! 2",
+      "series_synonyms": "Give Blessings to This Wonderful World! 2; KonoSuba: God's Blessing on This Wonderful World! Second Season",
+      "series_type": 1,
+      "series_episodes": 0,
+      "series_status": 3,
+      "series_start": "2017-01-12",
+      "series_end": "0000-00-00",
+      "series_image": "https://myanimelist.cdn-dena.com/images/anime/2/83188.jpg",
+      "my_id": 0,
+      "my_watched_episodes": 0,
+      "my_start_date": "0000-00-00",
+      "my_finish_date": "0000-00-00",
+      "my_score": 0,
+      "my_status": 6,
+      "my_rewatching": 0,
+      "my_rewatching_ep": 0,
+      "my_last_updated": 1482066996,
+      "my_tags": ""
+    },
+    {
+      "series_animedb_id": 32937,
+      "series_title": "Kono Subarashii Sekai ni Shukufuku wo! 2",
+      "series_synonyms": "Give Blessings to This Wonderful World! 2; KonoSuba: God's Blessing on This Wonderful World! Second Season",
+      "series_type": 1,
+      "series_episodes": 0,
+      "series_status": 3,
+      "series_start": "2017-01-12",
+      "series_end": "0000-00-00",
+      "series_image": "https://myanimelist.cdn-dena.com/images/anime/2/83188.jpg",
+      "my_id": 0,
+      "my_watched_episodes": 0,
+      "my_start_date": "0000-00-00",
+      "my_finish_date": "0000-00-00",
+      "my_score": 0,
+      "my_status": 6,
+      "my_rewatching": 0,
+      "my_rewatching_ep": 0,
+      "my_last_updated": 1482066996,
+      "my_tags": ""
+    }
+  ]
+};
+
+export const listObjectSingle = {
+  "myinfo": {
+    "user_id": 5551097,
+    "user_name": "apitest1234",
+    "user_watching": 0,
+    "user_completed": 0,
+    "user_onhold": 0,
+    "user_dropped": 0,
+    "user_plantowatch": 0,
+    "user_days_spent_watching": 0
+  },
+  "anime": [
+    {
+      "series_animedb_id": 32937,
+      "series_title": "Kono Subarashii Sekai ni Shukufuku wo! 2",
+      "series_synonyms": "Give Blessings to This Wonderful World! 2; KonoSuba: God's Blessing on This Wonderful World! Second Season",
+      "series_type": 1,
+      "series_episodes": 0,
+      "series_status": 3,
+      "series_start": "2017-01-12",
+      "series_end": "0000-00-00",
+      "series_image": "https://myanimelist.cdn-dena.com/images/anime/2/83188.jpg",
+      "my_id": 0,
+      "my_watched_episodes": 0,
+      "my_start_date": "0000-00-00",
+      "my_finish_date": "0000-00-00",
+      "my_score": 0,
+      "my_status": 6,
+      "my_rewatching": 0,
+      "my_rewatching_ep": 0,
+      "my_last_updated": 1482066996,
+      "my_tags": ""
+    }
+  ]
+};

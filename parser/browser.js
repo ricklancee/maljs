@@ -1,5 +1,8 @@
 "use strict";
 
+import convertTypes from './convert-types';
+import toXml from './to-xml';
+
 const parser = function() {
   const domParser = new DOMParser();
 
@@ -15,32 +18,6 @@ const parser = function() {
 
   const toJson = function(xmlString) {
 
-  };
-
-  /**
-   *  Mal requires a simple xml format so we can get away
-   *  with using a very simple function to build one.
-   */
-  const toXml = function(object) {
-    let xmlString = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>`;
-
-    function getProps(obj) {
-      for (let property in obj) {
-        if (obj.hasOwnProperty(property)){
-          if (obj[property].constructor == Object) {
-            xmlString += `<${property}>`;
-            getProps(obj[property]);
-            xmlString += `</${property}>`;
-          } else {
-            xmlString += `<${property}>${obj[property]}</${property}>`;
-          }
-        }
-      }
-    }
-
-    getProps(object);
-
-    return xmlString;
   };
 
   return {
