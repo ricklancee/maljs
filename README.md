@@ -2,7 +2,7 @@
 
 A promise based json api wrapper for the MAL (myanimelist) api. http://myanimelist.net/modules.php?go=api
 
-This api has not been tested in production environments. To use the MAL api in your browser you are required to be whitelisted [as discussed in this topic](https://myanimelist.net/forum/?topicid=692311).  
+This api has not been tested in production environments.  
 
 ### Support
 All api requests return promises, if you are using in the browser instead of nodejs, use a Promise polyfill where neccesarry. For browsers that don't support ES6 see the ES5 file in the `es5/` directory.
