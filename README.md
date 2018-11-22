@@ -1,3 +1,5 @@
+# MAL's API is dead this package is no longer maintained.
+
 # MALjs
 
 A promise based json api wrapper for the MAL (myanimelist) api. http://myanimelist.net/modules.php?go=api
